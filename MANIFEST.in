@@ -5,3 +5,4 @@ include pyproject.toml
 recursive-include src *.py
 recursive-include src py.typed
 recursive-include tests *.py
+exclude tests/pubmed/credentials.py

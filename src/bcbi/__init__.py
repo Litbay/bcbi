@@ -30,6 +30,6 @@ BCBI - 生物计算与生物信息学工具包
 
 from bcbi import pubmed
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 __all__ = ["pubmed"]
