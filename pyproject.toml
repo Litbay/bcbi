@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bcbi"
-version = "0.1.0"
+version = "0.2.0"
 description = "BCBI - 生物计算与生物信息学工具包，包含 PubMed 文献搜索等功能"
 readme = "README.md"
 license = {text = "MIT"}

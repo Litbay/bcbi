@@ -119,8 +119,16 @@ def _fetch_by_pmids(
     max_workers: int,
 ) -> List[Dict[str, Any]]:
     """通过 PMID 列表获取文献"""
+    # 限制单批 PMID 数量，避免 URL 过长被 PubMed 拒绝（GET 方式推荐 ≤ 200）
+    batch_size = min(batch_size, 200)
+    
     if max_workers <= 1:
-        return client.efetch(ids=pmids)
+        all_articles: List[Dict[str, Any]] = []
+        for i in range(0, len(pmids), batch_size):
+            articles = client.efetch(ids=pmids[i:i + batch_size])
+            if articles:
+                all_articles.extend(articles)
+        return all_articles
     
     batches = [pmids[i:i + batch_size] for i in range(0, len(pmids), batch_size)]
     all_articles: List[Dict[str, Any]] = []
